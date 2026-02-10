@@ -1,0 +1,120 @@
+import { NavLink } from 'react-router-dom'
+import { content, type Locale } from '../content'
+import RequestForm from './RequestForm'
+
+type HomeProps = {
+  locale: Locale
+}
+
+function Home({ locale }: HomeProps) {
+  const copy = content[locale]
+  const featuredPosts = copy.blogPosts.filter((post) => post.featured)
+
+  return (
+    <div className="flex flex-col gap-16">
+      <section className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="flex flex-col gap-6">
+          <div className="inline-flex items-center gap-3 rounded-full border border-slate-800 bg-slate-900/70 px-4 py-2 text-xs uppercase tracking-[0.25em] text-slate-300">
+            <span className="h-2 w-2 rounded-full bg-sunrise-200" />
+            {copy.hero.badge}
+          </div>
+          <div className="space-y-4">
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+              {copy.hero.title}
+            </h1>
+            <p className="max-w-2xl text-lg text-slate-300">
+              {copy.hero.subtitle}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="#request"
+              className="rounded-full bg-sunrise-200 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900"
+            >
+              {copy.hero.ctaPrimary}
+            </a>
+            <NavLink
+              to="/blog"
+              className="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-100 transition hover:border-slate-500 hover:text-white"
+            >
+              {copy.hero.ctaSecondary}
+            </NavLink>
+          </div>
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/40 p-6">
+            <h2 className="text-sm uppercase tracking-[0.3em] text-slate-400">
+              {copy.highlights.title}
+            </h2>
+            <ul className="mt-4 grid gap-3 text-sm text-slate-200">
+              {copy.highlights.items.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-sunrise-200" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="relative rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 p-6">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-sunrise-200/30 blur-2xl" />
+          <div className="flex h-full flex-col justify-between gap-6">
+            <img
+              src="/my-photo.png"
+              alt="Valerii Linden portrait"
+              className="w-full rounded-2xl object-cover shadow-lg"
+            />
+            <div className="space-y-2">
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
+                English Tutor
+              </p>
+              <p className="text-lg font-semibold">
+                A1-B1 structured lessons
+              </p>
+              <p className="text-sm text-slate-300">
+                Novi Sad, Serbia â€¢ Online
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="rounded-3xl border border-slate-800 bg-slate-900/40 p-6">
+          <h2 className="text-sm uppercase tracking-[0.3em] text-slate-400">
+            {copy.blog.title}
+          </h2>
+          <p className="mt-3 text-lg text-slate-200">{copy.blog.subtitle}</p>
+          <div className="mt-6 grid gap-4">
+            {featuredPosts.map((post) => (
+              <article
+                key={post.id}
+                className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4"
+              >
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
+                  {post.date}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold">{post.title}</h3>
+                <p className="mt-2 text-sm text-slate-300">{post.excerpt}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div
+          id="request"
+          className="rounded-3xl border border-slate-800 bg-slate-900/40 p-6"
+        >
+          <h2 className="text-sm uppercase tracking-[0.3em] text-slate-400">
+            {copy.request.title}
+          </h2>
+          <p className="mt-3 text-sm text-slate-300">
+            {copy.request.description}
+          </p>
+          <RequestForm copy={copy.request} />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+export default Home

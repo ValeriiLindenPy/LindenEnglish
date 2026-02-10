@@ -8,7 +8,7 @@ type BlogPost = {
   featured?: boolean
 }
 
-type LocaleContent = {
+export type LocaleContent = {
   nav: {
     home: string
     about: string

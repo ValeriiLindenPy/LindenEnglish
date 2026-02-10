@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sunrise-500: #fa5c5c;
+  --color-sunrise-400: #fd8a6b;
+  --color-sunrise-300: #fec288;
+  --color-sunrise-200: #fbef76;
+}
+
+:root {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}

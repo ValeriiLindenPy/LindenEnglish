@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { NavLink } from 'react-router-dom'
 import { locales, type Locale, type LocaleContent } from '../content'
+import { SHOW_BLOG } from '../siteConfig'
 
 type MobileMenuProps = {
   copy: LocaleContent
@@ -55,19 +56,21 @@ function MobileMenu({
           >
             {copy.nav.about}
           </NavLink>
-          <NavLink
-            to="/blog"
-            className={({ isActive }) =>
-              `rounded-2xl px-4 py-3 transition ${
-                isActive
-                  ? 'bg-sunrise-300 text-[#2b1a10]'
-                  : 'hover:text-white'
-              }`
-            }
-            onClick={() => setMenuOpen(false)}
-          >
-            {copy.nav.blog}
-          </NavLink>
+          {SHOW_BLOG ? (
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                `rounded-2xl px-4 py-3 transition ${
+                  isActive
+                    ? 'bg-sunrise-300 text-[#2b1a10]'
+                    : 'hover:text-white'
+                }`
+              }
+              onClick={() => setMenuOpen(false)}
+            >
+              {copy.nav.blog}
+            </NavLink>
+          ) : null}
           <NavLink
             to="/contact"
             className={({ isActive }) =>

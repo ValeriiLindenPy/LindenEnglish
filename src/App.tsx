@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { content, type Locale } from './content'
 import About from './components/About'
 import Blog from './components/Blog'
@@ -7,6 +7,7 @@ import Contact from './components/Contact'
 import Header from './components/Header'
 import Home from './components/Home'
 import MobileMenu from './components/MobileMenu'
+import { SHOW_BLOG } from './siteConfig'
 
 const baseClass =
   'relative min-h-screen overflow-hidden bg-[#1a120d] text-[#f7efe6] selection:bg-sunrise-200 selection:text-[#2b1a10]'
@@ -68,7 +69,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home locale={locale} />} />
             <Route path="/about" element={<About locale={locale} />} />
-            <Route path="/blog" element={<Blog locale={locale} />} />
+            {SHOW_BLOG ? (
+              <Route path="/blog" element={<Blog locale={locale} />} />
+            ) : (
+              <Route path="/blog" element={<Navigate to="/" replace />} />
+            )}
             <Route path="/contact" element={<Contact locale={locale} />} />
           </Routes>
         </main>

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { content, type Locale } from '../content'
+import { SHOW_BLOG } from '../siteConfig'
 import RequestForm from './RequestForm'
 
 type HomeProps = {
@@ -33,12 +34,14 @@ function Home({ locale }: HomeProps) {
             >
               {copy.hero.ctaPrimary}
             </a>
-            <NavLink
-              to="/blog"
-              className="rounded-full border border-[#3b2a20] px-6 py-3 text-sm font-semibold text-[#f3e8dc] transition hover:border-[#5a3c2c] hover:text-white"
-            >
-              {copy.hero.ctaSecondary}
-            </NavLink>
+            {SHOW_BLOG ? (
+              <NavLink
+                to="/blog"
+                className="rounded-full border border-[#3b2a20] px-6 py-3 text-sm font-semibold text-[#f3e8dc] transition hover:border-[#5a3c2c] hover:text-white"
+              >
+                {copy.hero.ctaSecondary}
+              </NavLink>
+            ) : null}
           </div>
           <div className="rounded-3xl border border-[#3b2a20] bg-[#24170f]/60 p-6">
             <h2 className="text-sm font-semibold text-[#c9b7a5]">
@@ -79,27 +82,30 @@ function Home({ locale }: HomeProps) {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="rounded-3xl border border-[#3b2a20] bg-[#24170f]/60 p-6">
-          <h2 className="text-sm font-semibold text-[#c9b7a5]">
-            {copy.blog.title}
-          </h2>
-          <p className="mt-3 text-lg text-[#f0e2d5]">{copy.blog.subtitle}</p>
-          <div className="mt-6 grid gap-4">
-            {featuredPosts.map((post) => (
-              <article
-                key={post.id}
-                className="rounded-2xl border border-[#3b2a20] bg-[#1b110c]/70 p-4"
-              >
-                <p className="text-xs font-semibold text-[#c9b7a5]">
-                  {post.date}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold">{post.title}</h3>
-                <p className="mt-2 text-sm text-[#e2d2c4]">{post.excerpt}</p>
-              </article>
-            ))}
+        {SHOW_BLOG ? (
+          <div className="rounded-3xl border border-[#3b2a20] bg-[#24170f]/60 p-6">
+            <h2 className="text-sm font-semibold text-[#c9b7a5]">
+              {copy.blog.title}
+            </h2>
+            <p className="mt-3 text-lg text-[#f0e2d5]">{copy.blog.subtitle}</p>
+            <div className="mt-6 grid gap-4">
+              {featuredPosts.map((post) => (
+                <article
+                  key={post.id}
+                  className="rounded-2xl border border-[#3b2a20] bg-[#1b110c]/70 p-4"
+                >
+                  <p className="text-xs font-semibold text-[#c9b7a5]">
+                    {post.date}
+                  </p>
+                  <h3 className="mt-2 text-lg font-semibold">{post.title}</h3>
+                  <p className="mt-2 text-sm text-[#e2d2c4]">
+                    {post.excerpt}
+                  </p>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-
+        ) : null}
         <div
           id="request"
           className="rounded-3xl border border-[#3b2a20] bg-[#24170f]/60 p-6"

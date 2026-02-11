@@ -95,7 +95,7 @@ export const content: Record<Locale, LocaleContent> = {
     request: {
       title: 'Request a class',
       description:
-        'Tell me your goal and level. Soon this request will go to Telegram as a sticker, for now it stays here.',
+        'Tell me your goal and level. Soon this request will go to me.',
       name: 'Your name',
       level: 'Current level (A1-B1)',
       goal: 'Main goal',
@@ -198,7 +198,7 @@ export const content: Record<Locale, LocaleContent> = {
     request: {
       title: 'Запросить урок',
       description:
-        'Опишите цель и уровень. В будущем запрос будет отправляться в Telegram как стикер, пока остается здесь.',
+        'Опишите цель и уровень. В будущем запрос будет отправлен мне.',
       name: 'Ваше имя',
       level: 'Текущий уровень (A1-B1)',
       goal: 'Главная цель',
@@ -301,7 +301,7 @@ export const content: Record<Locale, LocaleContent> = {
     request: {
       title: 'Zahtev za cas',
       description:
-        'Napisite cilj i nivo. U buducnosti ce zahtev ici u Telegram kao stiker, sada ostaje ovde.',
+        'Napisite cilj i nivo. U buducnosti ce zahtev ici do mene.',
       name: 'Vase ime',
       level: 'Trenutni nivo (A1-B1)',
       goal: 'Glavni cilj',

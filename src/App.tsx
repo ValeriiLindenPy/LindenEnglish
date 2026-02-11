@@ -9,10 +9,33 @@ import Home from './components/Home'
 import MobileMenu from './components/MobileMenu'
 
 const baseClass =
-  'min-h-screen bg-slate-950 text-slate-100 selection:bg-sunrise-200 selection:text-slate-900'
+  'relative min-h-screen overflow-hidden bg-[#1a120d] text-[#f7efe6] selection:bg-sunrise-200 selection:text-[#2b1a10]'
+
+const getDefaultLocale = (): Locale => {
+  if (typeof navigator === 'undefined') {
+    return 'en'
+  }
+
+  const languages = navigator.languages?.length
+    ? navigator.languages
+    : [navigator.language]
+  const normalized = languages.map((lang) => lang.toLowerCase())
+
+  if (normalized.some((lang) => lang.startsWith('sr'))) {
+    return 'sr-Lat'
+  }
+  if (normalized.some((lang) => lang.startsWith('ru'))) {
+    return 'ru'
+  }
+  if (normalized.some((lang) => lang.startsWith('en'))) {
+    return 'en'
+  }
+
+  return 'en'
+}
 
 function App() {
-  const [locale, setLocale] = useState<Locale>('en')
+  const [locale, setLocale] = useState<Locale>(() => getDefaultLocale())
   const [menuOpen, setMenuOpen] = useState(false)
   const copy = useMemo(() => content[locale], [locale])
 
@@ -22,7 +45,10 @@ function App() {
 
   return (
     <div className={baseClass}>
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-16 pt-6 sm:px-6">
+      <div className="pointer-events-none absolute -top-32 right-0 h-72 w-72 rounded-full bg-sunrise-400/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 left-0 h-80 w-80 rounded-full bg-sunrise-300/20 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,#2a1a12_0%,transparent_60%)]" />
+      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-16 pt-6 sm:px-6">
         <Header
           copy={copy}
           locale={locale}
@@ -47,7 +73,7 @@ function App() {
           </Routes>
         </main>
 
-        <footer className="border-t border-slate-800 pt-6 text-sm text-slate-400">
+        <footer className="border-t border-[#3b2a20] pt-6 text-sm text-[#c9b7a5]">
           {copy.footer}
         </footer>
       </div>

@@ -48,40 +48,40 @@ function RequestForm({ copy }: RequestFormProps) {
         placeholder={copy.name}
         value={formData.name}
         onChange={handleChange('name')}
-        className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-sunrise-200"
+        className="rounded-2xl border border-[#3b2a20] bg-[#1b110c]/80 px-4 py-3 text-sm text-[#f3e8dc] outline-none focus:border-sunrise-300"
       />
       <input
         placeholder={copy.level}
         value={formData.level}
         onChange={handleChange('level')}
-        className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-sunrise-200"
+        className="rounded-2xl border border-[#3b2a20] bg-[#1b110c]/80 px-4 py-3 text-sm text-[#f3e8dc] outline-none focus:border-sunrise-300"
       />
       <input
         placeholder={copy.goal}
         value={formData.goal}
         onChange={handleChange('goal')}
-        className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-sunrise-200"
+        className="rounded-2xl border border-[#3b2a20] bg-[#1b110c]/80 px-4 py-3 text-sm text-[#f3e8dc] outline-none focus:border-sunrise-300"
       />
       <input
         placeholder={copy.contact}
         value={formData.contact}
         onChange={handleChange('contact')}
-        className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-sunrise-200"
+        className="rounded-2xl border border-[#3b2a20] bg-[#1b110c]/80 px-4 py-3 text-sm text-[#f3e8dc] outline-none focus:border-sunrise-300"
       />
       <button
         type="button"
         onClick={handleSubmit}
         disabled={status === 'submitting'}
-        className="rounded-full bg-sunrise-200 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900"
+        className="rounded-full bg-sunrise-300 px-6 py-3 text-sm font-semibold text-[#2b1a10] shadow-[0_12px_30px_rgba(251,239,118,0.25)]"
       >
         {status === 'submitting' ? 'Sending...' : copy.submit}
       </button>
       {status === 'success' ? (
-        <p className="text-xs text-emerald-300">Request sent. I will reply soon.</p>
+        <p className="text-xs text-emerald-200">Request sent. I will reply soon.</p>
       ) : status === 'error' ? (
-        <p className="text-xs text-rose-300">{errorMessage}</p>
+        <p className="text-xs text-rose-200">{errorMessage}</p>
       ) : (
-        <p className="text-xs text-slate-400">{copy.note}</p>
+        <p className="text-xs text-[#c9b7a5]">{copy.note}</p>
       )}
     </form>
   )
